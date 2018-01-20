@@ -27,7 +27,7 @@ package com.github.strka.realconvert;
 import com.github.strka.realconvert.util.BigDecimalBuilder;
 import java.math.BigDecimal;
 
-public abstract class Unit<T> {
+public abstract class Unit<T, S> {
 
   /**
    * Unit name.
@@ -68,5 +68,8 @@ public abstract class Unit<T> {
     return value;
   }
 
+  public abstract T from(Object k);
+
+  public abstract S normalize();
 
 }

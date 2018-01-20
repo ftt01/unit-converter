@@ -24,12 +24,11 @@
 
 package com.github.strka.realconvert.unit.temperature;
 
-import com.github.strka.realconvert.Convertible;
-import com.github.strka.realconvert.Temperature;
+import com.github.strka.realconvert.unit.Temperature;
 import com.github.strka.realconvert.util.BigDecimalBuilder;
 import java.math.BigDecimal;
 
-public final class Fahrenheit extends Temperature implements Convertible<Kelvin, Fahrenheit> {
+public final class Fahrenheit extends Temperature {
 
   private final static String NAME = "Kelvin";
   private final static String SYMBOL = "K";
@@ -47,11 +46,12 @@ public final class Fahrenheit extends Temperature implements Convertible<Kelvin,
   }
 
   @Override
-  public Fahrenheit from(Kelvin k) {
+  public Fahrenheit from(Object k) {
+    Kelvin kObject = (Kelvin) k;
     BigDecimal five = new BigDecimalBuilder().build(5);
     BigDecimal nine = new BigDecimalBuilder().build(9);
     BigDecimal nineDividedByFive = nine.divide(five, BigDecimalBuilder.getMathContext());
-    BigDecimal fahrenheitMultiplied = k.getValue()
+    BigDecimal fahrenheitMultiplied = kObject.getValue()
         .multiply(nineDividedByFive, BigDecimalBuilder.getMathContext());
     BigDecimal fahrenheitValue = fahrenheitMultiplied
         .subtract(new BigDecimalBuilder().build(459.67), BigDecimalBuilder.getMathContext());

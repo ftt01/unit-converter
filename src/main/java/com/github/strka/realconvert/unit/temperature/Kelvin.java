@@ -24,11 +24,10 @@
 
 package com.github.strka.realconvert.unit.temperature;
 
-import com.github.strka.realconvert.Convertible;
-import com.github.strka.realconvert.Temperature;
+import com.github.strka.realconvert.unit.Temperature;
 import java.math.BigDecimal;
 
-public final class Kelvin extends Temperature implements Convertible<Kelvin, Kelvin> {
+public final class Kelvin extends Temperature {
 
   private final static String NAME = "Kelvin";
   private final static String SYMBOL = "K";
@@ -53,7 +52,7 @@ public final class Kelvin extends Temperature implements Convertible<Kelvin, Kel
 
 
   @Override
-  public Kelvin from(Kelvin k) {
+  public Kelvin from(Object k) {
     return this;
   }
 }

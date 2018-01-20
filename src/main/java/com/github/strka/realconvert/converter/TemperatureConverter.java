@@ -22,18 +22,13 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert;
+package com.github.strka.realconvert.converter;
 
-import java.math.BigDecimal;
+import com.github.strka.realconvert.unit.Temperature;
 
-public abstract class Temperature extends Unit {
+public class TemperatureConverter {
 
-  public Temperature(String name, String symbol, double value) {
-    super(name, symbol, value);
+  public void register(Temperature unit) {
+
   }
-
-  public Temperature(String name, String symbol, BigDecimal value) {
-    super(name, symbol, value);
-  }
-
 }

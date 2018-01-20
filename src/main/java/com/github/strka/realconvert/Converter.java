@@ -22,40 +22,11 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.unit.Temperature;
-import com.github.strka.realconvert.util.BigDecimalBuilder;
-import java.math.BigDecimal;
+public abstract class Converter<T> {
 
-public final class Celsius extends Temperature {
+  abstract void register(T unit);
 
-  private final static String NAME = "Kelvin";
-  private final static String SYMBOL = "K";
-
-  public Celsius() {
-    super(Celsius.NAME, Celsius.SYMBOL, 0);
-  }
-
-  public Celsius(double value) {
-    super(Celsius.NAME, Celsius.SYMBOL, value);
-  }
-
-  public Celsius(BigDecimal value) {
-    super("Celsius", "°C", value);
-  }
-
-  @Override
-  public Kelvin normalize() {
-    Kelvin k = new Kelvin(new BigDecimalBuilder().build(273.15).add(this.getValue()));
-    return k;
-  }
-
-
-  @Override
-  public Celsius from(Object k) {
-    Kelvin kObject = (Kelvin) k;
-    Celsius c = new Celsius(kObject.getValue().subtract(new BigDecimalBuilder().build(273.15)));
-    return c;
-  }
+  abstract void remove(T unit);
 }

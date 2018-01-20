@@ -24,12 +24,19 @@
 
 package com.github.strka.realconvert;
 
+import static org.junit.Assert.assertEquals;
+
+import com.github.strka.realconvert.unit.temperature.Celsius;
 import com.github.strka.realconvert.unit.temperature.Kelvin;
+import org.junit.Test;
 
-public interface Convertible<S, T> {
+public class RealConverterTest {
 
-  S normalize();
-
-  T from(Kelvin k);
-
+  @Test
+  public void convert() {
+    RealConverter converter = new RealConverter();
+    Celsius result = (Celsius) converter.convert(Kelvin.class, Celsius.class, 0);
+    System.out.println(result.getValue());
+    assertEquals(0, result.getValue().compareTo(new Celsius(-273.15).getValue()));
+  }
 }
