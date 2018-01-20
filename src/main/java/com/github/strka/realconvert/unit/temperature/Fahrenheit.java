@@ -51,11 +51,11 @@ public final class Fahrenheit extends Temperature implements Convertible<Kelvin,
     BigDecimal five = new BigDecimalBuilder().build(5);
     BigDecimal nine = new BigDecimalBuilder().build(9);
     BigDecimal nineDividedByFive = nine.divide(five, BigDecimalBuilder.getMathContext());
-    BigDecimal kelvinMultiplied = k.getValue()
+    BigDecimal fahrenheitMultiplied = k.getValue()
         .multiply(nineDividedByFive, BigDecimalBuilder.getMathContext());
-    BigDecimal kelvinValue = kelvinMultiplied
+    BigDecimal fahrenheitValue = fahrenheitMultiplied
         .subtract(new BigDecimalBuilder().build(459.67), BigDecimalBuilder.getMathContext());
-    return new Fahrenheit(kelvinValue);
+    return new Fahrenheit(fahrenheitValue);
   }
 
   @Override
