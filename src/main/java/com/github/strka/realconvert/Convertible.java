@@ -22,17 +22,14 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert;
 
-apply plugin: 'java'
+import com.github.strka.realconvert.unit.temperature.Kelvin;
 
-sourceCompatibility = 1.8
+public interface Convertible<S, T> {
 
-repositories {
-    mavenCentral()
-}
+  S normalize();
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  T from(Kelvin k);
+
 }

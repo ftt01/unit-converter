@@ -22,17 +22,26 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.unit.temperature;
 
-apply plugin: 'java'
+import static org.junit.Assert.assertEquals;
 
-sourceCompatibility = 1.8
+import com.github.strka.realconvert.util.BigDecimalBuilder;
+import org.junit.Test;
 
-repositories {
-    mavenCentral()
-}
+public class CelsiusTest {
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  @Test
+  public void normalize() {
+    Celsius c = new Celsius(10.4);
+    Kelvin k = c.normalize();
+    assertEquals(0, new BigDecimalBuilder().build(283.55).compareTo(k.getValue()));
+  }
+
+  @Test
+  public void from() {
+    Celsius c = new Celsius(10.4);
+    Celsius c1 = c.from(new Kelvin(283.55));
+    assertEquals(0, c.getValue().compareTo(c1.getValue()));
+  }
 }

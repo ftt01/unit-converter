@@ -22,17 +22,38 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.unit.temperature;
 
-apply plugin: 'java'
+import com.github.strka.realconvert.Convertible;
+import com.github.strka.realconvert.Temperature;
+import java.math.BigDecimal;
 
-sourceCompatibility = 1.8
+public final class Kelvin extends Temperature implements Convertible<Kelvin, Kelvin> {
 
-repositories {
-    mavenCentral()
-}
+  private final static String NAME = "Kelvin";
+  private final static String SYMBOL = "K";
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  public Kelvin() {
+    super(Kelvin.NAME, Kelvin.SYMBOL, 0);
+  }
+
+  public Kelvin(double value) {
+    super(Kelvin.NAME, Kelvin.SYMBOL, value);
+  }
+
+
+  public Kelvin(BigDecimal value) {
+    super("Kelvin", "K", value);
+  }
+
+  @Override
+  public Kelvin normalize() {
+    return this;
+  }
+
+
+  @Override
+  public Kelvin from(Kelvin k) {
+    return this;
+  }
 }

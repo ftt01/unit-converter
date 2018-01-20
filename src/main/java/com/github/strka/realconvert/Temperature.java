@@ -22,17 +22,18 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert;
 
-apply plugin: 'java'
+import java.math.BigDecimal;
 
-sourceCompatibility = 1.8
+public abstract class Temperature extends Unit {
 
-repositories {
-    mavenCentral()
-}
+  public Temperature(String name, String symbol, double value) {
+    super(name, symbol, value);
+  }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  public Temperature(String name, String symbol, BigDecimal value) {
+    super(name, symbol, value);
+  }
+
 }

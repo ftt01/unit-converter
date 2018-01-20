@@ -22,17 +22,40 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.unit.temperature;
 
-apply plugin: 'java'
+import com.github.strka.realconvert.Convertible;
+import com.github.strka.realconvert.Temperature;
+import com.github.strka.realconvert.util.BigDecimalBuilder;
+import java.math.BigDecimal;
 
-sourceCompatibility = 1.8
+public final class Celsius extends Temperature implements Convertible<Kelvin, Celsius> {
 
-repositories {
-    mavenCentral()
-}
+  private final static String NAME = "Kelvin";
+  private final static String SYMBOL = "K";
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  public Celsius() {
+    super(Celsius.NAME, Celsius.SYMBOL, 0);
+  }
+
+  public Celsius(double value) {
+    super(Celsius.NAME, Celsius.SYMBOL, value);
+  }
+
+  public Celsius(BigDecimal value) {
+    super("Celsius", "°C", value);
+  }
+
+  @Override
+  public Kelvin normalize() {
+    Kelvin k = new Kelvin(new BigDecimalBuilder().build(273.15).add(this.getValue()));
+    return k;
+  }
+
+
+  @Override
+  public Celsius from(Kelvin k) {
+    Celsius c = new Celsius(k.getValue().subtract(new BigDecimalBuilder().build(273.15)));
+    return c;
+  }
 }

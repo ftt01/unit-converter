@@ -22,17 +22,34 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.util;
 
-apply plugin: 'java'
+import static org.junit.Assert.assertEquals;
 
-sourceCompatibility = 1.8
+import java.math.BigDecimal;
+import java.math.MathContext;
+import org.junit.Before;
+import org.junit.Test;
 
-repositories {
-    mavenCentral()
-}
+public class BigDecimalBuilderTest {
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  private double value;
+  private BigDecimal bigValue;
+
+  @Before
+  public void setUp() {
+    value = 45.6786786868686874657675456548465448764654132135764;
+  }
+
+  @Test
+  public void testWithMathContext() {
+    bigValue = new BigDecimalBuilder().mathContext(MathContext.DECIMAL128).build(value);
+    assertEquals(0, new BigDecimal(value, MathContext.DECIMAL128).compareTo(bigValue));
+  }
+
+  @Test
+  public void build() {
+    bigValue = new BigDecimal(1.2, BigDecimalBuilder.getMathContext());
+    assertEquals(0, new BigDecimalBuilder().build(1.2).compareTo(bigValue));
+  }
 }

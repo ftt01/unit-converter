@@ -22,17 +22,51 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert;
 
-apply plugin: 'java'
+import com.github.strka.realconvert.util.BigDecimalBuilder;
+import java.math.BigDecimal;
 
-sourceCompatibility = 1.8
+public abstract class Unit<T> {
 
-repositories {
-    mavenCentral()
-}
+  /**
+   * Unit name.
+   */
+  private final String name;
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  /**
+   * Unit symbol.
+   */
+  private final String symbol;
+
+  /**
+   * Unit value.
+   */
+  private final BigDecimal value;
+
+  public Unit(String name, String symbol, double value) {
+    this.name = name;
+    this.symbol = symbol;
+    this.value = new BigDecimalBuilder().build(value);
+  }
+
+  public Unit(String name, String symbol, BigDecimal value) {
+    this.name = name;
+    this.symbol = symbol;
+    this.value = value;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getSymbol() {
+    return symbol;
+  }
+
+  public BigDecimal getValue() {
+    return value;
+  }
+
+
 }

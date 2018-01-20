@@ -22,17 +22,30 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.util;
 
-apply plugin: 'java'
+import java.math.BigDecimal;
+import java.math.MathContext;
 
-sourceCompatibility = 1.8
+public class BigDecimalBuilder {
 
-repositories {
-    mavenCentral()
-}
+  private static MathContext mathContext = MathContext.DECIMAL32;
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  public static MathContext getMathContext() {
+    return mathContext;
+  }
+
+  public void setMathContext(MathContext mathContext) {
+    BigDecimalBuilder.mathContext = mathContext;
+  }
+
+  public BigDecimal build(double value) {
+    BigDecimal bigValue = new BigDecimal(value, mathContext);
+    return bigValue;
+  }
+
+  public BigDecimalBuilder mathContext(MathContext mathContext) {
+    BigDecimalBuilder.mathContext = mathContext;
+    return this;
+  }
 }

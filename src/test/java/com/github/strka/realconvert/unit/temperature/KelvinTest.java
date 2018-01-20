@@ -22,17 +22,24 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.unit.temperature;
 
-apply plugin: 'java'
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-sourceCompatibility = 1.8
+import org.junit.Test;
 
-repositories {
-    mavenCentral()
-}
+public class KelvinTest {
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  @Test
+  public void normalizeReturnKelvin() {
+    Kelvin t = new Kelvin(4d);
+    assertNotNull(t);
+  }
+
+  @Test
+  public void from() {
+    Kelvin k = new Kelvin(283.55);
+    assertEquals(0, k.from(k).getValue().compareTo(k.getValue()));
+  }
 }

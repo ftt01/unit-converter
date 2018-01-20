@@ -22,17 +22,26 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
-version '1.0-SNAPSHOT'
+package com.github.strka.realconvert.unit.temperature;
 
-apply plugin: 'java'
+import static org.junit.Assert.assertEquals;
 
-sourceCompatibility = 1.8
+import com.github.strka.realconvert.util.BigDecimalBuilder;
+import org.junit.Test;
 
-repositories {
-    mavenCentral()
-}
+public class FahrenheitTest {
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  @Test
+  public void from() {
+    Kelvin k = new Kelvin(255.9278);
+    Fahrenheit f = new Fahrenheit().from(k);
+    assertEquals(0, f.getValue().compareTo(new BigDecimalBuilder().build(1)));
+  }
+
+  @Test
+  public void normalize() {
+    Fahrenheit k = new Fahrenheit(1);
+    assertEquals(0, k.normalize().getValue()
+        .compareTo(new BigDecimalBuilder().build(255.9278)));
+  }
 }
