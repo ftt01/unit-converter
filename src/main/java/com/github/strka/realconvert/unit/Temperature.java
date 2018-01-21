@@ -25,9 +25,13 @@
 package com.github.strka.realconvert.unit;
 
 import com.github.strka.realconvert.Unit;
+import com.github.strka.realconvert.unit.temperature.Kelvin;
 
+/**
+ *
+ */
 public
-class Temperature extends Unit <Temperature> {
+abstract class Temperature extends Unit<Temperature, Kelvin> {
 
 
 }

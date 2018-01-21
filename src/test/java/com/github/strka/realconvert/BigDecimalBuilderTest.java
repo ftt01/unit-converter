@@ -22,41 +22,30 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.BigDecimalBuilder;
-import com.github.strka.realconvert.unit.Temperature;
-import java.math.BigDecimal;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public
-class Kelvin extends Temperature {
+import java.math.MathContext;
+import org.junit.Test;
 
-  public Kelvin() {
-    this.name = "kelvin";
-    this.symbol = "K";
+public class BigDecimalBuilderTest {
+
+  @Test
+  public void getInstanceReturnAnInstanceOfBigDecimalBuilder() {
+    assertTrue(BigDecimalBuilder.getInstance() != null);
   }
 
-  public Kelvin(double value) {
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = BigDecimalBuilder.getInstance().build(value);
+  @Test
+  public void getMathContextReturnOnlyOneInstanceWhenCalledMultipleTimes() {
+    MathContext one = BigDecimalBuilder.getInstance().getMathContext();
+    MathContext two = BigDecimalBuilder.getInstance().getMathContext();
+    assertEquals(one.toString(), two.toString());
   }
 
-  public Kelvin(BigDecimal value) {
-    super();
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = value;
+  @Test
+  public void buildReturnNewBigDecimalInstance() {
+    assertTrue(BigDecimalBuilder.getInstance().build(4) != null);
   }
-
-  @Override
-  public Kelvin normalize() {
-    return this;
-  }
-
-  @Override
-  public Temperature from(Kelvin standardUnit) {
-    return this;
-  }
-
 }

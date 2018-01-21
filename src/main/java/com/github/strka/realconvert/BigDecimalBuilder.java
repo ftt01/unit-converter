@@ -22,41 +22,29 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.BigDecimalBuilder;
-import com.github.strka.realconvert.unit.Temperature;
 import java.math.BigDecimal;
+import java.math.MathContext;
 
-public
-class Kelvin extends Temperature {
+public class BigDecimalBuilder {
 
-  public Kelvin() {
-    this.name = "kelvin";
-    this.symbol = "K";
+  private static BigDecimalBuilder ourInstance = new BigDecimalBuilder();
+  private
+  MathContext mathContext = MathContext.DECIMAL32;
+
+  private BigDecimalBuilder() {
   }
 
-  public Kelvin(double value) {
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = BigDecimalBuilder.getInstance().build(value);
+  public static BigDecimalBuilder getInstance() {
+    return ourInstance;
   }
 
-  public Kelvin(BigDecimal value) {
-    super();
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = value;
+  public MathContext getMathContext() {
+    return this.mathContext;
   }
 
-  @Override
-  public Kelvin normalize() {
-    return this;
+  public BigDecimal build(double value) {
+    return new BigDecimal(value, this.getMathContext());
   }
-
-  @Override
-  public Temperature from(Kelvin standardUnit) {
-    return this;
-  }
-
 }

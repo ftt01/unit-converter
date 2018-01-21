@@ -22,20 +22,35 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert;
+package com.github.strka.realconvert.unit.temperature;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
-import com.github.strka.realconvert.unit.Temperature;
-import com.github.strka.realconvert.unit.temperature.Kelvin;
+import com.github.strka.realconvert.BigDecimalBuilder;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
-public
-class KelvinTest {
+public class CelsiusTest {
+
+  private Celsius celsius;
+  private Kelvin kelvin;
+
+  @Before
+  public void setUp() {
+    celsius = new Celsius(0);
+    kelvin = Mockito.mock(Kelvin.class);
+    Mockito.when(kelvin.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(273.15));
+  }
 
   @Test
-  public
-  void testIfKelvinIsAnInstanceOfTemperature() {
-    assertTrue(new Kelvin() instanceof Temperature);
+  public void normalize() {
+    assertEquals(0, celsius.normalize().getValue().compareTo(kelvin.getValue()));
+  }
+
+  @Test
+  public void from() {
+    assertEquals(0, celsius.from(new Kelvin(273.15)).getValue()
+        .compareTo(BigDecimalBuilder.getInstance().build(0)));
   }
 }

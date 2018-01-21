@@ -22,41 +22,8 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.BigDecimalBuilder;
-import com.github.strka.realconvert.unit.Temperature;
-import java.math.BigDecimal;
-
-public
-class Kelvin extends Temperature {
-
-  public Kelvin() {
-    this.name = "kelvin";
-    this.symbol = "K";
-  }
-
-  public Kelvin(double value) {
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = BigDecimalBuilder.getInstance().build(value);
-  }
-
-  public Kelvin(BigDecimal value) {
-    super();
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = value;
-  }
-
-  @Override
-  public Kelvin normalize() {
-    return this;
-  }
-
-  @Override
-  public Temperature from(Kelvin standardUnit) {
-    return this;
-  }
+public interface Convertible<S, T> {
 
 }

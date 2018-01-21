@@ -24,39 +24,36 @@
 
 package com.github.strka.realconvert.unit.temperature;
 
+import static org.junit.Assert.assertEquals;
+
 import com.github.strka.realconvert.BigDecimalBuilder;
-import com.github.strka.realconvert.unit.Temperature;
 import java.math.BigDecimal;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public
-class Kelvin extends Temperature {
+public class KelvinTest {
 
-  public Kelvin() {
-    this.name = "kelvin";
-    this.symbol = "K";
+  Kelvin kelvin;
+  BigDecimal expectedValue;
+
+  @Before
+  public void setUp() {
+    kelvin = new Kelvin(4);
+    expectedValue = BigDecimalBuilder.getInstance().build(4);
   }
 
-  public Kelvin(double value) {
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = BigDecimalBuilder.getInstance().build(value);
+  @After
+  public void tearDown() {
   }
 
-  public Kelvin(BigDecimal value) {
-    super();
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = value;
+  @Test
+  public void normalize() {
+    assertEquals(0, kelvin.normalize().getValue().compareTo(expectedValue));
   }
 
-  @Override
-  public Kelvin normalize() {
-    return this;
+  @Test
+  public void from() {
+    assertEquals(0, kelvin.from(new Kelvin(4)).getValue().compareTo(expectedValue));
   }
-
-  @Override
-  public Temperature from(Kelvin standardUnit) {
-    return this;
-  }
-
 }

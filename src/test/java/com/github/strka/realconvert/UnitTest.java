@@ -24,20 +24,8 @@
 
 package com.github.strka.realconvert;
 
-import static org.junit.Assert.assertEquals;
-
-import com.github.strka.realconvert.unit.Temperature;
-import com.github.strka.realconvert.unit.temperature.Kelvin;
-import org.junit.Test;
-
 public
 class UnitTest {
 
-  @Test
-  public
-  void getUnitFromClass() {
-    Temperature t = new Temperature();
-    Kelvin kelvinObject = (Kelvin) t.createUnitFromClass(Kelvin.class);
-    assertEquals(kelvinObject.getName(), "kelvin");
-  }
+
 }

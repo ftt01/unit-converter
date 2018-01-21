@@ -36,9 +36,17 @@ import org.junit.Test;
 public
 class ConverterTest {
 
+  private Converter<Temperature> converter;
+
   @Before
   public
   void setUp() {
+    converter = new Converter<Temperature>();
+    try {
+      converter.convert(Kelvin.class, 4).to(Celsius.class);
+    } catch (Throwable e) {
+
+    }
   }
 
   @After
@@ -47,11 +55,12 @@ class ConverterTest {
   }
 
   @Test
-  public
-  void constructorShouldSetSourceAndTarget() {
-    Converter <Temperature> converter = new Converter <Temperature>(Kelvin.class, Celsius.class,
-        0d);
+  public void convertShouldSetSource() {
     assertEquals(converter.getSource().getName(), "kelvin");
+  }
+
+  @Test
+  public void toShouldSetTheTarget() {
     assertEquals(converter.getTarget().getName(), "celsius");
   }
 }

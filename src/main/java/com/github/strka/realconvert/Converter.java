@@ -24,20 +24,15 @@
 
 package com.github.strka.realconvert;
 
+import java.lang.reflect.Method;
+
 public
 class Converter<T> {
 
   private T source;
   private T target;
 
-  Converter(Class <? extends T> source, Class <? extends T> target, double value) {
-    Object sourceObj;
-    try {
-      this.source = source.getConstructor().newInstance();
-      this.target = target.getConstructor().newInstance();
-    } catch (Throwable e) {
-
-    }
+  Converter() {
   }
 
   public
@@ -48,5 +43,25 @@ class Converter<T> {
   public
   T getTarget() {
     return target;
+  }
+
+  public Converter convert(Class<? extends T> source, double value) {
+    try {
+      this.source = source.getConstructor(double.class).newInstance(value);
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+    return this;
+  }
+
+  public T to(Class<? extends T> target) {
+    Method fromStandardUnit;
+    try {
+      fromStandardUnit = target.getMethod("from", this.source.getClass());
+      this.target = (T) fromStandardUnit.invoke(target.getConstructor().newInstance(), this.source);
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+    return this.target;
   }
 }
