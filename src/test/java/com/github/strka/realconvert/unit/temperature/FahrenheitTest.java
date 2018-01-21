@@ -22,30 +22,41 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert;
+package com.github.strka.realconvert.unit.temperature;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class BigDecimalBuilder {
+import com.github.strka.realconvert.BigDecimalBuilder;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-  private static BigDecimalBuilder ourInstance = new BigDecimalBuilder();
+public class FahrenheitTest {
 
-  private
-  MathContext mathContext = MathContext.DECIMAL32;
+  private Fahrenheit fahrenheit;
+  private Kelvin kelvin;
 
-  private BigDecimalBuilder() {
+  @Before
+  public void setUp() {
+    fahrenheit = new Fahrenheit(1.0004);
+    kelvin = mock(Kelvin.class);
+    when(kelvin.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(255.9280));
   }
 
-  public static BigDecimalBuilder getInstance() {
-    return ourInstance;
+  @After
+  public void tearDown() {
   }
 
-  public MathContext getMathContext() {
-    return mathContext;
+  @Test
+  public void normalize() {
+    assertEquals(0, fahrenheit.normalize().getValue().compareTo(kelvin.getValue()));
   }
 
-  public BigDecimal build(double value) {
-    return new BigDecimal(value, this.getMathContext());
+  @Test
+  public void from() {
+    assertEquals(0, fahrenheit.from(new Kelvin(255.9280)).getValue()
+        .compareTo(new Fahrenheit(1.0004).getValue()));
   }
 }

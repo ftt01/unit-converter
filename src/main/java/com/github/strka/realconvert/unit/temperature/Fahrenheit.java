@@ -24,7 +24,45 @@
 
 package com.github.strka.realconvert.unit.temperature;
 
-public
-class Fahrenheit {
+import com.github.strka.realconvert.BigDecimalBuilder;
+import com.github.strka.realconvert.unit.Temperature;
+import java.math.BigDecimal;
 
+public class Fahrenheit extends Temperature {
+
+  private static final BigDecimal BIG_FIVE = BigDecimalBuilder.getInstance().build(5);
+  private static final BigDecimal BIG_NINE = BigDecimalBuilder.getInstance().build(9);
+  private static final BigDecimal FAHRENHEIT_CONST = BigDecimalBuilder.getInstance().build(459.67);
+
+  public Fahrenheit(double value) {
+    this.name = "fahrenheit";
+    this.symbol = "°F";
+    this.value = BigDecimalBuilder.getInstance().build(value);
+  }
+
+  public Fahrenheit(BigDecimal value) {
+    this.name = "fahrenheit";
+    this.symbol = "°F";
+    this.value = value;
+  }
+
+  @Override
+  public Kelvin normalize() {
+    BigDecimal fiveDividedByNine = BIG_FIVE
+        .divide(BIG_NINE, BigDecimalBuilder.getInstance().getMathContext());
+    BigDecimal fahrenheitValueAddedConst = this.getValue().add(FAHRENHEIT_CONST);
+    BigDecimal kelvinValue = fahrenheitValueAddedConst
+        .multiply(fiveDividedByNine, BigDecimalBuilder.getInstance().getMathContext());
+    return new Kelvin(kelvinValue);
+  }
+
+  @Override
+  public Fahrenheit from(Kelvin standardUnit) {
+    BigDecimal nineDividedByFive = BIG_NINE
+        .divide(BIG_FIVE, BigDecimalBuilder.getInstance().getMathContext());
+    BigDecimal kelvinMultipliedByConst = standardUnit.getValue()
+        .multiply(nineDividedByFive, BigDecimalBuilder.getInstance().getMathContext());
+    BigDecimal fahrenheitValue = kelvinMultipliedByConst.subtract(FAHRENHEIT_CONST);
+    return new Fahrenheit(fahrenheitValue);
+  }
 }
