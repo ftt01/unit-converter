@@ -22,13 +22,10 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.converter;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.unit.Temperature;
+public
+class TemperatureTest {
 
-public class TemperatureConverter {
 
-  public void register(Temperature unit) {
-
-  }
 }

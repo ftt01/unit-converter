@@ -22,34 +22,20 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.util;
+package com.github.strka.realconvert;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import org.junit.Before;
+import com.github.strka.realconvert.unit.Temperature;
+import com.github.strka.realconvert.unit.temperature.Kelvin;
 import org.junit.Test;
 
-public class BigDecimalBuilderTest {
-
-  private double value;
-  private BigDecimal bigValue;
-
-  @Before
-  public void setUp() {
-    value = 45.6786786868686874657675456548465448764654132135764;
-  }
+public
+class KelvinTest {
 
   @Test
-  public void testWithMathContext() {
-    bigValue = new BigDecimalBuilder().mathContext(MathContext.DECIMAL128).build(value);
-    assertEquals(0, new BigDecimal(value, MathContext.DECIMAL128).compareTo(bigValue));
-  }
-
-  @Test
-  public void build() {
-    bigValue = new BigDecimal(1.2, BigDecimalBuilder.getMathContext());
-    assertEquals(0, new BigDecimalBuilder().build(1.2).compareTo(bigValue));
+  public
+  void testIfKelvinIsAnInstanceOfTemperature() {
+    assertTrue(new Kelvin() instanceof Temperature);
   }
 }

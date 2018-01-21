@@ -25,18 +25,9 @@
 package com.github.strka.realconvert.unit;
 
 import com.github.strka.realconvert.Unit;
-import com.github.strka.realconvert.unit.temperature.Kelvin;
-import java.math.BigDecimal;
 
-public abstract class Temperature<T> extends Unit implements Convertible<Kelvin> {
-
-  public Temperature(String name, String symbol, double value) {
-    super(name, symbol, value);
-  }
-
-  public Temperature(String name, String symbol, BigDecimal value) {
-    super(name, symbol, value);
-  }
+public
+class Temperature extends Unit <Temperature> {
 
 
 }

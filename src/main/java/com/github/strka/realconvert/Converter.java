@@ -24,9 +24,29 @@
 
 package com.github.strka.realconvert;
 
-public abstract class Converter<T> {
+public
+class Converter<T> {
 
-  abstract void register(T unit);
+  private T source;
+  private T target;
 
-  abstract void remove(T unit);
+  Converter(Class <? extends T> source, Class <? extends T> target, double value) {
+    Object sourceObj;
+    try {
+      this.source = source.getConstructor().newInstance();
+      this.target = target.getConstructor().newInstance();
+    } catch (Throwable e) {
+
+    }
+  }
+
+  public
+  T getSource() {
+    return source;
+  }
+
+  public
+  T getTarget() {
+    return target;
+  }
 }

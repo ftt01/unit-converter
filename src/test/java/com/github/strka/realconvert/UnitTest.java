@@ -26,17 +26,18 @@ package com.github.strka.realconvert;
 
 import static org.junit.Assert.assertEquals;
 
-import com.github.strka.realconvert.unit.temperature.Celsius;
+import com.github.strka.realconvert.unit.Temperature;
 import com.github.strka.realconvert.unit.temperature.Kelvin;
 import org.junit.Test;
 
-public class RealConverterTest {
+public
+class UnitTest {
 
   @Test
-  public void convert() {
-    RealConverter converter = new RealConverter();
-    Celsius result = (Celsius) converter.convert(Kelvin.class, Celsius.class, 0);
-    System.out.println(result.getValue());
-    assertEquals(0, result.getValue().compareTo(new Celsius(-273.15).getValue()));
+  public
+  void getUnitFromClass() {
+    Temperature t = new Temperature();
+    Kelvin kelvinObject = (Kelvin) t.createUnitFromClass(Kelvin.class);
+    assertEquals(kelvinObject.getName(), "kelvin");
   }
 }

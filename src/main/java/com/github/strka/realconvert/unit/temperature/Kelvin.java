@@ -25,34 +25,12 @@
 package com.github.strka.realconvert.unit.temperature;
 
 import com.github.strka.realconvert.unit.Temperature;
-import java.math.BigDecimal;
 
-public final class Kelvin extends Temperature {
-
-  private final static String NAME = "Kelvin";
-  private final static String SYMBOL = "K";
+public
+class Kelvin extends Temperature {
 
   public Kelvin() {
-    super(Kelvin.NAME, Kelvin.SYMBOL, 0);
+    this.name = "kelvin";
   }
 
-  public Kelvin(double value) {
-    super(Kelvin.NAME, Kelvin.SYMBOL, value);
-  }
-
-
-  public Kelvin(BigDecimal value) {
-    super("Kelvin", "K", value);
-  }
-
-  @Override
-  public Kelvin normalize() {
-    return this;
-  }
-
-
-  @Override
-  public Kelvin from(Object k) {
-    return this;
-  }
 }

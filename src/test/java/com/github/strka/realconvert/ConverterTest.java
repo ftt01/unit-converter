@@ -22,7 +22,36 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit;
+package com.github.strka.realconvert;
 
-public interface Convertible<S> {
+import static org.junit.Assert.assertEquals;
+
+import com.github.strka.realconvert.unit.Temperature;
+import com.github.strka.realconvert.unit.temperature.Celsius;
+import com.github.strka.realconvert.unit.temperature.Kelvin;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public
+class ConverterTest {
+
+  @Before
+  public
+  void setUp() {
+  }
+
+  @After
+  public
+  void tearDown() {
+  }
+
+  @Test
+  public
+  void constructorShouldSetSourceAndTarget() {
+    Converter <Temperature> converter = new Converter <Temperature>(Kelvin.class, Celsius.class,
+        0d);
+    assertEquals(converter.getSource().getName(), "kelvin");
+    assertEquals(converter.getTarget().getName(), "celsius");
+  }
 }

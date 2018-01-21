@@ -24,52 +24,37 @@
 
 package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.util.BigDecimalBuilder;
-import java.math.BigDecimal;
+public abstract
+class Unit<T> {
 
-public abstract class Unit<T, S> {
+  protected String name;
+  protected String symbol;
+  protected double value;
 
-  /**
-   * Unit name.
-   */
-  private final String name;
-
-  /**
-   * Unit symbol.
-   */
-  private final String symbol;
-
-  /**
-   * Unit value.
-   */
-  private final BigDecimal value;
-
-  public Unit(String name, String symbol, double value) {
-    this.name = name;
-    this.symbol = symbol;
-    this.value = new BigDecimalBuilder().build(value);
-  }
-
-  public Unit(String name, String symbol, BigDecimal value) {
-    this.name = name;
-    this.symbol = symbol;
-    this.value = value;
-  }
-
-  public String getName() {
+  public
+  String getName() {
     return name;
   }
 
-  public String getSymbol() {
+  public
+  String getSymbol() {
     return symbol;
   }
 
-  public BigDecimal getValue() {
+  public
+  double getValue() {
     return value;
   }
 
-  public abstract T from(Object k);
-
-  public abstract S normalize();
-
+  public
+  Object createUnitFromClass(Class <? extends T> unitClass) {
+    Object unitObject = null;
+    try {
+      unitObject = unitClass.getConstructor().newInstance();
+      return unitObject;
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+    return unitObject;
+  }
 }
