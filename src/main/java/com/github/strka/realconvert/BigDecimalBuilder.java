@@ -31,8 +31,7 @@ public class BigDecimalBuilder {
 
   private static BigDecimalBuilder ourInstance = new BigDecimalBuilder();
 
-  private
-  MathContext mathContext = MathContext.DECIMAL32;
+  private MathContext mathContext = MathContext.DECIMAL32;
 
   private BigDecimalBuilder() {
   }

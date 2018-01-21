@@ -22,39 +22,33 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert.unit.length;
 
 import com.github.strka.realconvert.BigDecimalBuilder;
-import com.github.strka.realconvert.unit.Temperature;
+import com.github.strka.realconvert.unit.Length;
 import java.math.BigDecimal;
 
-public class Kelvin extends Temperature {
+public class Metre extends Length {
 
-  public Kelvin() {
-    this.name = "kelvin";
-    this.symbol = "K";
-  }
-
-  public Kelvin(double value) {
-    this.name = "kelvin";
-    this.symbol = "K";
+  public Metre(Double value) {
+    this.name = "metre";
+    this.symbol = "m";
     this.value = BigDecimalBuilder.getInstance().build(value);
   }
 
-  public Kelvin(BigDecimal value) {
-    this.name = "kelvin";
-    this.symbol = "K";
+  public Metre(BigDecimal value) {
+    this.name = "metre";
+    this.symbol = "m";
     this.value = value;
   }
 
   @Override
-  public Kelvin normalize() {
+  public Metre normalize() {
     return this;
   }
 
   @Override
-  public Temperature from(Kelvin standardUnit) {
+  public Metre from(Metre standardUnit) {
     return this;
   }
-
 }

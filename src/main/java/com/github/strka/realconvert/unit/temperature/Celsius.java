@@ -44,7 +44,6 @@ public class Celsius extends Temperature {
   }
 
   public Celsius(BigDecimal value) {
-    super();
     this.name = "celsius";
     this.symbol = "°C";
     this.value = value;

@@ -32,6 +32,4 @@ import com.github.strka.realconvert.unit.temperature.Kelvin;
  */
 public
 abstract class Temperature extends Unit<Temperature, Kelvin> {
-
-
 }

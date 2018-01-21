@@ -22,39 +22,40 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert.unit.length;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.github.strka.realconvert.BigDecimalBuilder;
-import com.github.strka.realconvert.unit.Temperature;
-import java.math.BigDecimal;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class Kelvin extends Temperature {
+public class InchTest {
 
-  public Kelvin() {
-    this.name = "kelvin";
-    this.symbol = "K";
+  private Inch inch;
+  private Metre metre;
+
+  @Before
+  public void setUp() {
+    inch = new Inch(1);
+    metre = mock(Metre.class);
+    when(metre.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(0.0254));
   }
 
-  public Kelvin(double value) {
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = BigDecimalBuilder.getInstance().build(value);
+  @After
+  public void tearDown() {
   }
 
-  public Kelvin(BigDecimal value) {
-    this.name = "kelvin";
-    this.symbol = "K";
-    this.value = value;
+  @Test
+  public void normalize() {
+    assertEquals(0, inch.normalize().getValue().compareTo(metre.getValue()));
   }
 
-  @Override
-  public Kelvin normalize() {
-    return this;
+  @Test
+  public void from() {
+    assertEquals(0, inch.from(new Metre(0.0254)).getValue().compareTo(inch.getValue()));
   }
-
-  @Override
-  public Temperature from(Kelvin standardUnit) {
-    return this;
-  }
-
 }
