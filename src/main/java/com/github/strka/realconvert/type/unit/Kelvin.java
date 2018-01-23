@@ -22,13 +22,31 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type;
+package com.github.strka.realconvert.type.unit;
 
-import com.github.strka.realconvert.Type;
+import com.github.strka.realconvert.Unit;
+import java.math.BigDecimal;
 
-public class Temperature extends Type {
+public class Kelvin extends Unit {
 
-  public Temperature() {
-    this.setName("temperature");
+  public Kelvin() {
+    this.setName("kelvin");
+    this.setSymbol("K");
+  }
+
+  public Kelvin(double value) {
+    super();
+    this.setName("kelvin");
+    this.setSymbol("K");
+
+  }
+
+  public Kelvin(BigDecimal value) {
+    super("kelvin", "K", value);
+  }
+
+  @Override
+  public Unit normalize() {
+    return null;
   }
 }

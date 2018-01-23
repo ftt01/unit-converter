@@ -22,13 +22,21 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
-public class Temperature extends Type {
+public class UnitRegistry {
 
-  public Temperature() {
-    this.setName("temperature");
+  private Map<Class<? extends Type>, HashSet<Class<? extends Unit>>> registry = new HashMap<>();
+
+  public Map getRegistry() {
+    return registry;
+  }
+
+  public void register(Class<? extends Type> typeClass, HashSet<Class<? extends Unit>> unitsClass) {
+    registry.put(typeClass, unitsClass);
   }
 }

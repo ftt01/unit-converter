@@ -28,7 +28,49 @@ import java.math.BigDecimal;
 
 public abstract class Unit {
 
-  public abstract String getName();
+  private String name;
+  private String symbol;
+  private BigDecimal value;
 
-  public abstract BigDecimal getValue();
+  public Unit() {
+
+  }
+
+  protected Unit(String name, String symbol, Double value) {
+    this.name = name;
+    this.symbol = symbol;
+    this.value = BigDecimalBuilder.getInstance().build(value);
+  }
+
+  protected Unit(String name, String symbol, BigDecimal value) {
+    this.name = name;
+    this.symbol = symbol;
+    this.value = value;
+  }
+
+  public abstract Unit normalize();
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getSymbol() {
+    return symbol;
+  }
+
+  public void setSymbol(String symbol) {
+    this.symbol = symbol;
+  }
+
+  public BigDecimal getValue() {
+    return value;
+  }
+
+  public void setValue(BigDecimal value) {
+    this.value = value;
+  }
 }

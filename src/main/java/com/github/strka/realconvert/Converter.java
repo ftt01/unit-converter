@@ -22,13 +22,34 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.Type;
+public class Converter {
 
-public class Temperature extends Type {
+  private UnitRegistry unitRegistry;
+  private Unit source;
 
-  public Temperature() {
-    this.setName("temperature");
+  Converter() {
+    unitRegistry = new UnitRegistry();
+  }
+
+  public Converter convert(Unit unit) {
+    this.source = unit;
+    return this;
+  }
+
+  public Unit getSource() {
+    return source;
+  }
+
+  public Unit to(Class<? extends Unit> kelvinClass) {
+    Unit unit = null;
+    try {
+      unit = kelvinClass.getConstructor().newInstance();
+
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+    return unit;
   }
 }

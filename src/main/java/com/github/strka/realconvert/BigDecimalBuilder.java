@@ -22,13 +22,29 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type;
+package com.github.strka.realconvert;
 
-import com.github.strka.realconvert.Type;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
-public class Temperature extends Type {
+public class BigDecimalBuilder {
 
-  public Temperature() {
-    this.setName("temperature");
+  private static BigDecimalBuilder ourInstance = new BigDecimalBuilder();
+  private MathContext mathContext;
+
+  private BigDecimalBuilder() {
+    this.mathContext = MathContext.DECIMAL32;
+  }
+
+  public static BigDecimalBuilder getInstance() {
+    return ourInstance;
+  }
+
+  public MathContext getMathContext() {
+    return this.mathContext;
+  }
+
+  public BigDecimal build(double value) {
+    return new BigDecimal(value, this.mathContext);
   }
 }
