@@ -24,10 +24,11 @@
 
 package com.github.strka.realconvert.type.unit;
 
+import com.github.strka.realconvert.Convertible;
 import com.github.strka.realconvert.Unit;
 import java.math.BigDecimal;
 
-public class Kelvin extends Unit {
+public class Kelvin extends Unit implements Convertible<Kelvin> {
 
   public Kelvin() {
     super("kelvin", "K", 0d);
@@ -44,5 +45,10 @@ public class Kelvin extends Unit {
   @Override
   public Unit normalize() {
     return this;
+  }
+
+  @Override
+  public Kelvin from(Kelvin source) {
+    return source;
   }
 }

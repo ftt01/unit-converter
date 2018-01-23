@@ -54,4 +54,10 @@ public class KelvinTest {
   public void normalizeShouldReturnAKelvinTemperature() {
     assertEquals(0, kelvin.normalize().getValue().compareTo(kelvin.getValue()));
   }
+
+  @Test
+  public void fromShouldReturnKelvinFromNormalizedUnit() {
+    Kelvin createdKelvin = kelvin.from(kelvin);
+    assertEquals(0, kelvin.getValue().compareTo(createdKelvin.getValue()));
+  }
 }
