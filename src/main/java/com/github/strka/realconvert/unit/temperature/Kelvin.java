@@ -22,40 +22,33 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type.unit;
+package com.github.strka.realconvert.unit.temperature;
 
-import com.github.strka.realconvert.BigDecimalBuilder;
 import com.github.strka.realconvert.Convertible;
 import com.github.strka.realconvert.Unit;
 import java.math.BigDecimal;
 
-public class Celsius extends Unit implements Convertible<Kelvin> {
+public class Kelvin extends Unit implements Convertible<Kelvin> {
 
-  private static final String NAME = "celsius";
-  private static final String SYMBOL = "°C";
-
-  public Celsius() {
-    super(NAME, SYMBOL, 0d);
+  public Kelvin() {
+    super("kelvin", "K", 0d);
   }
 
-  public Celsius(double value) {
-    super(NAME, SYMBOL, value);
+  public Kelvin(double value) {
+    super("kelvin", "K", value);
   }
 
-  public Celsius(BigDecimal value) {
-    super(NAME, SYMBOL, value);
+  public Kelvin(BigDecimal value) {
+    super("kelvin", "K", value);
   }
 
   @Override
-  public Kelvin normalize() {
-    BigDecimal kelvinValue = this.getValue().add(BigDecimalBuilder.getInstance().build(273.15));
-    return new Kelvin(kelvinValue);
+  public Unit normalize() {
+    return this;
   }
 
   @Override
-  public Celsius from(Kelvin source) {
-    BigDecimal celsiusValue = source.getValue()
-        .subtract(BigDecimalBuilder.getInstance().build(273.15));
-    return new Celsius(celsiusValue);
+  public Kelvin from(Kelvin source) {
+    return source;
   }
 }

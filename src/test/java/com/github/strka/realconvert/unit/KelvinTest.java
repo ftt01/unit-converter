@@ -22,33 +22,43 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type.unit;
+package com.github.strka.realconvert.unit;
 
-import com.github.strka.realconvert.Convertible;
-import com.github.strka.realconvert.Unit;
-import java.math.BigDecimal;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-public class Kelvin extends Unit implements Convertible<Kelvin> {
+import com.github.strka.realconvert.unit.temperature.Kelvin;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-  public Kelvin() {
-    super("kelvin", "K", 0d);
+public class KelvinTest {
+
+  Kelvin kelvin;
+
+  @Before
+  public void setUp() {
+    kelvin = new Kelvin(4d);
   }
 
-  public Kelvin(double value) {
-    super("kelvin", "K", value);
+  @After
+  public void tearDown() {
   }
 
-  public Kelvin(BigDecimal value) {
-    super("kelvin", "K", value);
+  @Test
+  public void shouldHaveNameAndSymbol() {
+    assertNotNull(kelvin.getName());
+    assertNotNull(kelvin.getSymbol());
   }
 
-  @Override
-  public Unit normalize() {
-    return this;
+  @Test
+  public void normalizeShouldReturnAKelvinTemperature() {
+    assertEquals(0, kelvin.normalize().getValue().compareTo(kelvin.getValue()));
   }
 
-  @Override
-  public Kelvin from(Kelvin source) {
-    return source;
+  @Test
+  public void fromShouldReturnKelvinFromNormalizedUnit() {
+    Kelvin createdKelvin = kelvin.from(kelvin);
+    assertEquals(0, kelvin.getValue().compareTo(createdKelvin.getValue()));
   }
 }

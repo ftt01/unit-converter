@@ -29,8 +29,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.github.strka.realconvert.type.unit.Celsius;
-import com.github.strka.realconvert.type.unit.Kelvin;
+import com.github.strka.realconvert.unit.temperature.Celsius;
+import com.github.strka.realconvert.unit.temperature.Kelvin;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

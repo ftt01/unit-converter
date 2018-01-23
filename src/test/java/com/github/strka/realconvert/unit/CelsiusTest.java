@@ -22,22 +22,30 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type.unit;
+package com.github.strka.realconvert.unit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import com.github.strka.realconvert.BigDecimalBuilder;
+import com.github.strka.realconvert.unit.temperature.Celsius;
+import com.github.strka.realconvert.unit.temperature.Kelvin;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class KelvinTest {
+public class CelsiusTest {
 
-  Kelvin kelvin;
+  private Celsius celsius;
+  private Kelvin mockedKelvin;
 
   @Before
   public void setUp() {
-    kelvin = new Kelvin(4d);
+    celsius = new Celsius(0d);
+    mockedKelvin = mock(Kelvin.class);
+    when(mockedKelvin.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(273.15));
   }
 
   @After
@@ -45,19 +53,18 @@ public class KelvinTest {
   }
 
   @Test
-  public void shouldHaveNameAndSymbol() {
-    assertNotNull(kelvin.getName());
-    assertNotNull(kelvin.getSymbol());
+  public void shouldHaveName() {
+    assertNotNull(celsius.getName());
   }
 
   @Test
-  public void normalizeShouldReturnAKelvinTemperature() {
-    assertEquals(0, kelvin.normalize().getValue().compareTo(kelvin.getValue()));
+  public void shouldConvertCelsiusToKelvin() {
+    assertEquals(0, celsius.normalize().getValue().compareTo(mockedKelvin.getValue()));
   }
 
   @Test
-  public void fromShouldReturnKelvinFromNormalizedUnit() {
-    Kelvin createdKelvin = kelvin.from(kelvin);
-    assertEquals(0, kelvin.getValue().compareTo(createdKelvin.getValue()));
+  public void shouldConvertATemperatureUnitIntoCelsius() {
+    celsius = celsius.from(mockedKelvin);
+    assertEquals(0, celsius.getValue().compareTo(BigDecimalBuilder.getInstance().build(0)));
   }
 }

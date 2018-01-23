@@ -26,6 +26,7 @@ package com.github.strka.realconvert.type;
 
 import static org.junit.Assert.assertNotNull;
 
+import com.github.strka.realconvert.unit.Temperature;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

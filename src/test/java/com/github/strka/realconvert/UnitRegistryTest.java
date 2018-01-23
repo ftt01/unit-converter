@@ -26,8 +26,8 @@ package com.github.strka.realconvert;
 
 import static org.junit.Assert.assertEquals;
 
-import com.github.strka.realconvert.type.Temperature;
-import com.github.strka.realconvert.type.unit.Celsius;
+import com.github.strka.realconvert.unit.Temperature;
+import com.github.strka.realconvert.unit.temperature.Celsius;
 import java.util.HashSet;
 import org.junit.After;
 import org.junit.Before;
