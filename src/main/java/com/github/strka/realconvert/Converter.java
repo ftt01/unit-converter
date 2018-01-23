@@ -24,6 +24,11 @@
 
 package com.github.strka.realconvert;
 
+import com.github.strka.realconvert.unit.Temperature;
+import com.github.strka.realconvert.unit.temperature.Celsius;
+import com.github.strka.realconvert.unit.temperature.Kelvin;
+import java.util.HashSet;
+
 public class Converter {
 
   private UnitRegistry unitRegistry;
@@ -31,6 +36,11 @@ public class Converter {
 
   Converter() {
     unitRegistry = new UnitRegistry();
+
+    HashSet<Class<? extends Unit>> temperatures = new HashSet<>();
+    temperatures.add(Celsius.class);
+    temperatures.add(Kelvin.class);
+    unitRegistry.register(Temperature.class, temperatures);
   }
 
   public Converter convert(Unit unit) {
