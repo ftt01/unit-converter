@@ -29,6 +29,6 @@ import com.github.strka.realconvert.Type;
 public class Temperature extends Type {
 
   public Temperature() {
-    this.setName("temperature");
+    super("temperature");
   }
 }

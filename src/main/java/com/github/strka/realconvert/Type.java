@@ -28,6 +28,14 @@ public abstract class Type {
 
   private String name;
 
+  protected Type() {
+
+  }
+
+  public Type(String name) {
+    this.name = name;
+  }
+
   public String getName() {
     return name;
   }
