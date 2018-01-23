@@ -34,7 +34,7 @@ import org.junit.Test;
 
 public class ConverterTest {
 
-  Converter converter;
+  private Converter converter;
 
   @Before
   public void setUp() {
