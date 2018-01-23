@@ -24,6 +24,7 @@
 
 package com.github.strka.realconvert.type.unit;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
@@ -51,6 +52,6 @@ public class KelvinTest {
 
   @Test
   public void normalizeShouldReturnAKelvinTemperature() {
-
+    assertEquals(0, kelvin.normalize().getValue().compareTo(kelvin.getValue()));
   }
 }

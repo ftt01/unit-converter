@@ -30,15 +30,11 @@ import java.math.BigDecimal;
 public class Kelvin extends Unit {
 
   public Kelvin() {
-    this.setName("kelvin");
-    this.setSymbol("K");
+    super("kelvin", "K", 0d);
   }
 
   public Kelvin(double value) {
-    super();
-    this.setName("kelvin");
-    this.setSymbol("K");
-
+    super("kelvin", "K", value);
   }
 
   public Kelvin(BigDecimal value) {
@@ -47,6 +43,6 @@ public class Kelvin extends Unit {
 
   @Override
   public Unit normalize() {
-    return null;
+    return this;
   }
 }
