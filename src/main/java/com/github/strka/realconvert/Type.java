@@ -29,7 +29,7 @@ public abstract class Type {
   private String name;
 
   protected Type() {
-
+    this.name = "";
   }
 
   public Type(String name) {
@@ -40,7 +40,4 @@ public abstract class Type {
     return name;
   }
 
-  protected void setName(String name) {
-    this.name = name;
-  }
 }
