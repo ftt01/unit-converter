@@ -24,50 +24,41 @@
 
 package com.github.strka.realconvert;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertNotNull;
 
-import java.math.BigDecimal;
+import com.github.strka.realconvert.type.unit.Celsius;
+import com.github.strka.realconvert.type.unit.Kelvin;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TypeTest {
+public class ConverterTest {
 
-  private int initialUnitsLength;
-  private Unit unit;
-  private Unit anotherUnitWithSameNameAsUnitButWithDifferentValue;
-  private Type sut;
+  Converter converter;
 
   @Before
   public void setUp() {
-    sut = spy(Type.class);
-    initialUnitsLength = sut.getUnits().size();
+    converter = new Converter();
+  }
 
-    unit = mock(Unit.class);
-    anotherUnitWithSameNameAsUnitButWithDifferentValue = mock(Unit.class);
-
-    when(unit.getName()).thenReturn("unit");
-    when(unit.getValue()).thenReturn(new BigDecimal(34));
-    when(anotherUnitWithSameNameAsUnitButWithDifferentValue.getName()).thenReturn("unit");
-    when(anotherUnitWithSameNameAsUnitButWithDifferentValue.getValue())
-        .thenReturn(new BigDecimal(15));
+  @After
+  public void tearDown() {
   }
 
   @Test
-  public void getName() {
+  public void convertShouldSetTheSourceUnit() {
+    converter.convert(new Celsius());
+    assertNotNull(converter.getSource());
   }
 
   @Test
-  public void registerShouldRegisterNewUnit() {
-    sut.register(unit);
-    assertEquals(++initialUnitsLength, sut.getUnits().size());
+  public void convertShouldReturnAConverter() {
+    assertNotNull(converter.convert(new Celsius()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void returnShouldNotRegisterIfUnitsAlreadyHaveAUnitWithSameName() {
-    sut.register(unit);
-    sut.register(anotherUnitWithSameNameAsUnitButWithDifferentValue);
+  @Test
+  public void toShouldConvertSourceTheTarget() {
+    Kelvin result = (Kelvin) converter.convert(new Celsius()).to(Kelvin.class);
+    assertNotNull(result.getName());
   }
 }
