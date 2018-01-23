@@ -42,14 +42,16 @@ public class Converter {
     return source;
   }
 
-  public Unit to(Class<? extends Unit> kelvinClass) {
-    Unit unit = null;
+  public Unit to(Class<? extends Unit> unitClass) {
+    Convertible convertible;
+    Unit conversionResult = null;
+    Unit normalized = source.normalize();
     try {
-      unit = kelvinClass.getConstructor().newInstance();
-
+      convertible = (Convertible) unitClass.getConstructor().newInstance();
+      conversionResult = convertible.from(normalized);
     } catch (Throwable e) {
       e.printStackTrace();
     }
-    return unit;
+    return conversionResult;
   }
 }

@@ -25,6 +25,9 @@
 package com.github.strka.realconvert;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.github.strka.realconvert.type.unit.Celsius;
 import com.github.strka.realconvert.type.unit.Kelvin;
@@ -35,10 +38,13 @@ import org.junit.Test;
 public class ConverterTest {
 
   private Converter converter;
+  private Celsius mockedCelsius;
 
   @Before
   public void setUp() {
     converter = new Converter();
+    mockedCelsius = mock(Celsius.class);
+    when(mockedCelsius.normalize()).thenReturn(new Kelvin());
   }
 
   @After
@@ -61,4 +67,14 @@ public class ConverterTest {
     Kelvin result = (Kelvin) converter.convert(new Celsius()).to(Kelvin.class);
     assertNotNull(result.getName());
   }
+
+  /**
+   * Does this test should be improved?
+   */
+  @Test
+  public void toConvertAnUnitToAnotherOne() {
+    converter.convert(mockedCelsius).to(Kelvin.class);
+    verify(mockedCelsius).normalize();
+  }
+
 }
