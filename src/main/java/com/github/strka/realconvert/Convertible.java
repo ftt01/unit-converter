@@ -22,47 +22,9 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.type.unit;
+package com.github.strka.realconvert;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+public interface Convertible<T> {
 
-import com.github.strka.realconvert.BigDecimalBuilder;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-public class CelsiusTest {
-
-  private Celsius celsius;
-  private Kelvin mockedKelvin;
-
-  @Before
-  public void setUp() {
-    celsius = new Celsius(0d);
-    mockedKelvin = mock(Kelvin.class);
-    when(mockedKelvin.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(273.15));
-  }
-
-  @After
-  public void tearDown() {
-  }
-
-  @Test
-  public void shouldHaveName() {
-    assertNotNull(celsius.getName());
-  }
-
-  @Test
-  public void shouldConvertCelsiusToKelvin() {
-    assertEquals(0, celsius.normalize().getValue().compareTo(mockedKelvin.getValue()));
-  }
-
-  @Test
-  public void shouldConvertATemperatureUnitIntoCelsius() {
-    celsius = celsius.from(mockedKelvin);
-    assertEquals(0, celsius.getValue().compareTo(BigDecimalBuilder.getInstance().build(0)));
-  }
+  Unit from(T source);
 }
