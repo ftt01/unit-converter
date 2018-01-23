@@ -22,35 +22,52 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert.unit.temperature;
+package com.github.strka.realconvert;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
-import com.github.strka.realconvert.BigDecimalBuilder;
+import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-public class CelsiusTest {
+public class TypeTest {
 
-  private Celsius celsius;
-  private Kelvin kelvin;
+  private int initialUnitsLength;
+  private Unit unit;
+  private Unit anotherUnitWithSameNameAsUnitButWithDifferentValue;
+  private Type sut;
 
   @Before
   public void setUp() {
-    celsius = new Celsius(0);
-    kelvin = Mockito.mock(Kelvin.class);
-    Mockito.when(kelvin.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(273.15));
+    sut = spy(Type.class);
+    initialUnitsLength = sut.getUnits().size();
+
+    unit = mock(Unit.class);
+    anotherUnitWithSameNameAsUnitButWithDifferentValue = mock(Unit.class);
+
+    when(unit.getName()).thenReturn("unit");
+    when(unit.getValue()).thenReturn(new BigDecimal(34));
+    when(anotherUnitWithSameNameAsUnitButWithDifferentValue.getName()).thenReturn("unit");
+    when(anotherUnitWithSameNameAsUnitButWithDifferentValue.getValue())
+        .thenReturn(new BigDecimal(15));
   }
 
   @Test
-  public void normalize() {
-    assertEquals(0, celsius.normalize().getValue().compareTo(kelvin.getValue()));
+  public void getName() {
   }
 
   @Test
-  public void from() {
-    assertEquals(0, celsius.from(new Kelvin(273.15)).getValue()
-        .compareTo(BigDecimalBuilder.getInstance().build(0)));
+  public void registerShouldRegisterNewUnit() {
+    sut.register(unit);
+    assertEquals(++initialUnitsLength, sut.getUnits().size());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void returnShouldNotRegisterIfUnitsAlreadyHaveAUnitWithSameName() {
+    sut.register(unit);
+    sut.register(anotherUnitWithSameNameAsUnitButWithDifferentValue);
   }
 }

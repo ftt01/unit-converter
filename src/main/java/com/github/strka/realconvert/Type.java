@@ -24,8 +24,30 @@
 
 package com.github.strka.realconvert;
 
-public
-class UnitTest {
+import java.util.ArrayList;
+import java.util.Collection;
 
+public abstract class Type {
 
+  private String name;
+  private Collection<Unit> units = new ArrayList();
+
+  public String getName() {
+    return name;
+  }
+
+  public Collection<Unit> getUnits() {
+    return units;
+  }
+
+  public void register(Unit unit) {
+    long registered = units.stream()
+        .filter((u) -> u.getName() == unit.getName())
+        .count();
+    if (registered != 0) {
+      throw new IllegalArgumentException("Unit" + unit.getName() + " is already registered.");
+    }
+
+    units.add(unit);
+  }
 }

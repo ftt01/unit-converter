@@ -26,53 +26,9 @@ package com.github.strka.realconvert;
 
 import java.math.BigDecimal;
 
-/**
- * @param <M> current Unit.
- * @param <N> Standard unit.
- * @author Sitraka Ratsimba<ratsimbasitraka@gmail.com>
- */
-public abstract class Unit<M, N> {
+public abstract class Unit {
 
-  protected String name;
-  protected String symbol;
-  protected BigDecimal value;
+  public abstract String getName();
 
-
-  /**
-   * Returns unit name.
-   *
-   * @return Unit name.
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Returns unit's symbol.
-   */
-  public String getSymbol() {
-    return symbol;
-  }
-
-  /**
-   * Returns unit's value.
-   *
-   * @return value of unit.
-   */
-  public BigDecimal getValue() {
-    return value;
-  }
-
-  /**
-   * Creates a standard unit from the current unit.
-   *
-   * @return A standard unit instance.
-   */
-  public abstract N normalize();
-
-
-  /**
-   * @param standardUnit Standard unit
-   */
-  public abstract M from(N standardUnit);
+  public abstract BigDecimal getValue();
 }
