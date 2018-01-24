@@ -22,21 +22,13 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert;
+package com.github.strka.realconvert.unit;
 
-public abstract class Type {
+import com.github.strka.realconvert.Type;
 
-  private String name;
+public class Length extends Type {
 
-  protected Type() {
+  public Length() {
+    super("length");
   }
-
-  public Type(String name) {
-    this.name = name;
-  }
-
-  public String getName() {
-    return name;
-  }
-
 }

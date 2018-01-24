@@ -22,21 +22,24 @@
  * SOFTWARE.
  */
 
-package com.github.strka.realconvert;
+package com.github.strka.realconvert.unit;
 
-public abstract class Type {
+import static org.junit.Assert.assertNotNull;
 
-  private String name;
+import org.junit.Before;
+import org.junit.Test;
 
-  protected Type() {
+public class LengthTest {
+
+  Length length;
+
+  @Before
+  public void setUp() {
+    length = new Length();
   }
 
-  public Type(String name) {
-    this.name = name;
+  @Test
+  public void shouldHaveName() {
+    assertNotNull(length.getName());
   }
-
-  public String getName() {
-    return name;
-  }
-
 }
