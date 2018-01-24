@@ -52,16 +52,28 @@ public class Converter {
     return source;
   }
 
-  public Unit to(Class<? extends Unit> unitClass) {
-    Convertible convertible;
+  public Unit to(Class<? extends Unit> unitClass) throws IncompatibleUnitException {
+    Convertible<Unit> convertible;
     Unit conversionResult = null;
     Unit normalized = source.normalize();
+    Unit unitTarget = null;
+
     try {
-      convertible = (Convertible) unitClass.getConstructor().newInstance();
-      conversionResult = convertible.from(normalized);
+      unitTarget = unitClass.getConstructor().newInstance();
     } catch (Throwable e) {
       e.printStackTrace();
     }
+
+    if (!source.getType().getName().equals(unitTarget.getType().getName())) {
+      throw new IncompatibleUnitException();
+    }
+    try {
+      convertible = (Convertible<Unit>) unitTarget;
+      conversionResult = convertible.from(normalized);
+    } catch (Throwable ignored) {
+
+    }
+
     return conversionResult;
   }
 }

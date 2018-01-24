@@ -29,6 +29,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.github.strka.realconvert.unit.Length;
+import com.github.strka.realconvert.unit.Temperature;
+import com.github.strka.realconvert.unit.length.Inch;
 import com.github.strka.realconvert.unit.temperature.Celsius;
 import com.github.strka.realconvert.unit.temperature.Kelvin;
 import org.junit.After;
@@ -39,12 +42,16 @@ public class ConverterTest {
 
   private Converter converter;
   private Celsius mockedCelsius;
+  private Inch mockedInch;
 
   @Before
   public void setUp() {
     converter = new Converter();
     mockedCelsius = mock(Celsius.class);
+    mockedInch = mock(Inch.class);
     when(mockedCelsius.normalize()).thenReturn(new Kelvin());
+    when(mockedCelsius.getType()).thenReturn(new Temperature());
+    when(mockedInch.getType()).thenReturn(new Length());
   }
 
   @After
@@ -63,7 +70,7 @@ public class ConverterTest {
   }
 
   @Test
-  public void toShouldConvertSourceTheTarget() {
+  public void toShouldConvertSourceTheTarget() throws IncompatibleUnitException {
     Kelvin result = (Kelvin) converter.convert(new Celsius()).to(Kelvin.class);
     assertNotNull(result.getName());
   }
@@ -72,9 +79,14 @@ public class ConverterTest {
    * Does this test should be improved?
    */
   @Test
-  public void toConvertAnUnitToAnotherOne() {
+  public void toConvertAnUnitToAnotherOne() throws IncompatibleUnitException {
     converter.convert(mockedCelsius).to(Kelvin.class);
     verify(mockedCelsius).normalize();
   }
 
+  @Test(expected = IncompatibleUnitException.class)
+  public void fromIncompatibleUnitExceptionWhenAttemptingToConvertUnitThatHaveDifferentType()
+      throws IncompatibleUnitException {
+    converter.convert(mockedCelsius).to(mockedInch.getClass());
+  }
 }
