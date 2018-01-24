@@ -61,4 +61,9 @@ public class KelvinTest {
     Kelvin createdKelvin = kelvin.from(kelvin);
     assertEquals(0, kelvin.getValue().compareTo(createdKelvin.getValue()));
   }
+
+  @Test
+  public void shouldHaveTemperatureType() {
+    assertNotNull(kelvin.getType());
+  }
 }
