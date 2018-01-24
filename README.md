@@ -13,3 +13,13 @@ System.out.println(result.getValue() + " " + result.getSymbol());
 ```
 
 That's all :)
+
+## Supported conversion
+
+* Temperature
+  * Celsius
+  * Kelvin
+  * Fahrenheit
+* Length
+  * Metre
+  * Inch
