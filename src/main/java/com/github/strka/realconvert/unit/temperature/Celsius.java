@@ -27,6 +27,7 @@ package com.github.strka.realconvert.unit.temperature;
 import com.github.strka.realconvert.BigDecimalBuilder;
 import com.github.strka.realconvert.Convertible;
 import com.github.strka.realconvert.Unit;
+import com.github.strka.realconvert.unit.Temperature;
 import java.math.BigDecimal;
 
 public class Celsius extends Unit implements Convertible<Kelvin> {
@@ -35,15 +36,15 @@ public class Celsius extends Unit implements Convertible<Kelvin> {
   private static final String SYMBOL = "°C";
 
   public Celsius() {
-    super(NAME, SYMBOL, 0d);
+    super(new Temperature(), NAME, SYMBOL, 0d);
   }
 
   public Celsius(double value) {
-    super(NAME, SYMBOL, value);
+    super(new Temperature(), NAME, SYMBOL, value);
   }
 
   public Celsius(BigDecimal value) {
-    super(NAME, SYMBOL, value);
+    super(new Temperature(), NAME, SYMBOL, value);
   }
 
   @Override

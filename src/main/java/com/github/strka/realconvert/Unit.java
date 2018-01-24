@@ -31,7 +31,7 @@ public abstract class Unit {
   private String name;
   private String symbol;
   private BigDecimal value;
-
+  private Type type;
   public Unit() {
 
   }
@@ -43,6 +43,20 @@ public abstract class Unit {
   }
 
   protected Unit(String name, String symbol, BigDecimal value) {
+    this.name = name;
+    this.symbol = symbol;
+    this.value = value;
+  }
+
+  protected Unit(Type type, String name, String symbol, double value) {
+    this.type = type;
+    this.name = name;
+    this.symbol = symbol;
+    this.value = BigDecimalBuilder.getInstance().build(value);
+  }
+
+  protected Unit(Type type, String name, String symbol, BigDecimal value) {
+    this.type = type;
     this.name = name;
     this.symbol = symbol;
     this.value = value;
@@ -60,5 +74,9 @@ public abstract class Unit {
 
   public BigDecimal getValue() {
     return value;
+  }
+
+  public Type getType() {
+    return type;
   }
 }

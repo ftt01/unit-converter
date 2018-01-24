@@ -67,4 +67,9 @@ public class CelsiusTest {
     celsius = celsius.from(mockedKelvin);
     assertEquals(0, celsius.getValue().compareTo(BigDecimalBuilder.getInstance().build(0)));
   }
+
+  @Test
+  public void shouldHaveTemperatureType() {
+    assertNotNull(celsius.getType());
+  }
 }
