@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/realconvert-lib.iml" filepath="$PROJECT_DIR$/.idea/modules/realconvert-lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/realconvert-lib_main.iml" filepath="$PROJECT_DIR$/.idea/modules/realconvert-lib_main.iml" group="realconvert-lib" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/realconvert-lib_test.iml" filepath="$PROJECT_DIR$/.idea/modules/realconvert-lib_test.iml" group="realconvert-lib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unit-converter.iml" filepath="$PROJECT_DIR$/.idea/modules/unit-converter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unit-converter_main.iml" filepath="$PROJECT_DIR$/.idea/modules/unit-converter_main.iml" group="unit-converter" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unit-converter_test.iml" filepath="$PROJECT_DIR$/.idea/modules/unit-converter_test.iml" group="unit-converter" />
     </modules>
   </component>
 </project>

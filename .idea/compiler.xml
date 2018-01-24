@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="realconvert-lib_main" target="1.8" />
       <module name="realconvert-lib_test" target="1.8" />
+      <module name="unit-converter_main" target="1.8" />
+      <module name="unit-converter_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

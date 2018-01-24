@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-group 'com.github.sitrka.realconvert-lib'
+group 'com.github.sitrakary.unit-converter'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
