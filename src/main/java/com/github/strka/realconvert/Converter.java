@@ -67,7 +67,6 @@ public class Converter {
     if (!source.getType().getName().equals(unitTarget.getType().getName())) {
       throw new IncompatibleUnitException();
     }
-
     try {
       convertible = (Convertible<Unit>) unitTarget;
       conversionResult = convertible.from(normalized);
