@@ -24,35 +24,28 @@
 
 package com.github.strka.realconvert.unit.length;
 
-import com.github.strka.realconvert.Convertible;
+import com.github.strka.realconvert.BigDecimalBuilder;
 import com.github.strka.realconvert.Unit;
 import com.github.strka.realconvert.unit.Length;
 import java.math.BigDecimal;
 
-public class Meter extends Unit implements Convertible<Meter> {
+public class Inch extends Unit {
 
-  private static final String NAME = "meter";
-  private static final String SYMBOL = "m";
+  private static String NAME = "inch";
+  private static String SYMBOL = "in";
 
-  public Meter() {
+  public Inch() {
     super(new Length(), NAME, SYMBOL, 0d);
   }
 
-  public Meter(double value) {
+  public Inch(double value) {
     super(new Length(), NAME, SYMBOL, value);
-  }
-
-  public Meter(BigDecimal value) {
-    super(new Length(), NAME, SYMBOL, value);
-  }
-
-  @Override
-  public Meter from(Meter source) {
-    return source;
   }
 
   @Override
   public Meter normalize() {
-    return this;
+    BigDecimal meterValue = BigDecimalBuilder.getInstance().build(0.0254)
+        .multiply(this.getValue(), BigDecimalBuilder.getInstance().getMathContext());
+    return new Meter(meterValue);
   }
 }

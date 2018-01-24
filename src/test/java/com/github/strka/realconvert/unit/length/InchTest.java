@@ -24,35 +24,28 @@
 
 package com.github.strka.realconvert.unit.length;
 
-import com.github.strka.realconvert.Convertible;
-import com.github.strka.realconvert.Unit;
-import com.github.strka.realconvert.unit.Length;
-import java.math.BigDecimal;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class Meter extends Unit implements Convertible<Meter> {
+import com.github.strka.realconvert.BigDecimalBuilder;
+import org.junit.Before;
+import org.junit.Test;
 
-  private static final String NAME = "meter";
-  private static final String SYMBOL = "m";
+public class InchTest {
 
-  public Meter() {
-    super(new Length(), NAME, SYMBOL, 0d);
+  private Inch oneInch;
+  private Meter meter;
+
+  @Before
+  public void setUp() {
+    oneInch = new Inch(1d);
+    meter = mock(Meter.class);
+    when(meter.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(0.0254));
   }
 
-  public Meter(double value) {
-    super(new Length(), NAME, SYMBOL, value);
-  }
-
-  public Meter(BigDecimal value) {
-    super(new Length(), NAME, SYMBOL, value);
-  }
-
-  @Override
-  public Meter from(Meter source) {
-    return source;
-  }
-
-  @Override
-  public Meter normalize() {
-    return this;
+  @Test
+  public void normalizeShouldReturnAMeter() {
+    assertEquals(0, oneInch.normalize().getValue().compareTo(meter.getValue()));
   }
 }
