@@ -25,14 +25,16 @@
 package com.github.strka.realconvert.unit.length;
 
 import com.github.strka.realconvert.BigDecimalBuilder;
+import com.github.strka.realconvert.Convertible;
 import com.github.strka.realconvert.Unit;
 import com.github.strka.realconvert.unit.Length;
 import java.math.BigDecimal;
 
-public class Inch extends Unit {
+public class Inch extends Unit implements Convertible<Meter> {
 
   private static String NAME = "inch";
   private static String SYMBOL = "in";
+  private static BigDecimal INCH_SCALE = BigDecimalBuilder.getInstance().build(0.0254);
 
   public Inch() {
     super(new Length(), NAME, SYMBOL, 0d);
@@ -42,10 +44,20 @@ public class Inch extends Unit {
     super(new Length(), NAME, SYMBOL, value);
   }
 
+  public Inch(BigDecimal value) {
+    super(new Length(), NAME, SYMBOL, value);
+  }
+
   @Override
   public Meter normalize() {
-    BigDecimal meterValue = BigDecimalBuilder.getInstance().build(0.0254)
+    BigDecimal meterValue = INCH_SCALE
         .multiply(this.getValue(), BigDecimalBuilder.getInstance().getMathContext());
     return new Meter(meterValue);
+  }
+
+  @Override
+  public Unit from(Meter source) {
+    BigDecimal inchValue = source.getValue().divide(INCH_SCALE);
+    return new Inch(inchValue);
   }
 }

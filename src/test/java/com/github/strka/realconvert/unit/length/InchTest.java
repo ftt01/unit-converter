@@ -48,4 +48,9 @@ public class InchTest {
   public void normalizeShouldReturnAMeter() {
     assertEquals(0, oneInch.normalize().getValue().compareTo(meter.getValue()));
   }
+
+  @Test
+  public void fromShouldReturnInchFromMeter() {
+    assertEquals(0, new Inch().from(meter).getValue().compareTo(oneInch.getValue()));
+  }
 }
