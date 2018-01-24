@@ -6,13 +6,25 @@ A java library which convert an unit to another one. Unit converter can convert 
 
 Unit converter is very easy to use.
 ```java
-Converter converter = new Converter();
-Kelvin result = converter.convert(new Celsius(4.4)).to(Kelvin.class);
-System.out.println(result.getValue() + " " + result.getSymbol());
-// 277.55 K
+import com.github.sitrka.realconvert.Converter;
+import com.github.sitrka.unit.temperature.Kelvin;
+import com.github.sitrka.unit.temperature.Celsius;
+
+public class ConversionTest {
+  public static void main(String args[]) {
+    Converter converter = new Converter();
+    Kelvin result = converter.convert(new Celcius(4)).to(Kelvin.class);
+    System.out.println(result.getValue()); // 274.15
+  }  
+}
 ```
 
 That's all :)
+
+## API
+* Convert
+  * _*Converter()*_ - Create new converter.
+  * _*convert(Unit source)*_ -
 
 ## Supported conversion
 
