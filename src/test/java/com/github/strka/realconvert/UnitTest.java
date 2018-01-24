@@ -24,47 +24,36 @@
 
 package com.github.strka.realconvert;
 
-import java.math.BigDecimal;
+import static org.mockito.Mockito.mock;
 
-public abstract class Unit {
+import com.github.strka.realconvert.unit.temperature.Celsius;
+import org.junit.Before;
+import org.junit.Test;
 
-  private String name;
-  private String symbol;
-  private BigDecimal value;
+public class UnitTest {
+
+  private Celsius unit;
   private Type type;
-  public Unit() {
 
+  @Before
+  public void setUp() {
+    unit = mock(Celsius.class);
   }
 
-  protected Unit(Type type, String name, String symbol, double value) {
-    this.type = type;
-    this.name = name;
-    this.symbol = symbol;
-    this.value = BigDecimalBuilder.getInstance().build(value);
+
+  @Test
+  public void shouldHaveType() {
   }
 
-  protected Unit(Type type, String name, String symbol, BigDecimal value) {
-    this.type = type;
-    this.name = name;
-    this.symbol = symbol;
-    this.value = value;
+  @Test
+  public void getName() {
   }
 
-  public abstract Unit normalize();
-
-  public String getName() {
-    return name;
+  @Test
+  public void getSymbol() {
   }
 
-  public String getSymbol() {
-    return symbol;
-  }
-
-  public BigDecimal getValue() {
-    return value;
-  }
-
-  public Type getType() {
-    return type;
+  @Test
+  public void getValue() {
   }
 }
