@@ -31,7 +31,7 @@ import org.junit.Test;
 
 public class LengthTest {
 
-  Length length;
+  private Length length;
 
   @Before
   public void setUp() {

@@ -31,11 +31,10 @@ import java.util.HashSet;
 
 public class Converter {
 
-  private UnitRegistry unitRegistry;
+  private UnitRegistry unitRegistry = new UnitRegistry();
   private Unit source;
 
   Converter() {
-    unitRegistry = new UnitRegistry();
 
     HashSet<Class<? extends Unit>> temperatures = new HashSet<>();
     temperatures.add(Celsius.class);
@@ -52,26 +51,30 @@ public class Converter {
     return source;
   }
 
+  private Unit createUnit(Class<? extends Unit> unitClass) {
+    Unit unit = null;
+    try {
+      unit = unitClass.getConstructor().newInstance();
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+    return unit;
+  }
+
   public Unit to(Class<? extends Unit> unitClass) throws IncompatibleUnitException {
     Convertible<Unit> convertible;
     Unit conversionResult = null;
     Unit normalized = source.normalize();
-    Unit unitTarget = null;
+    Unit unitTarget;
+    unitTarget = this.createUnit(unitClass);
 
-    try {
-      unitTarget = unitClass.getConstructor().newInstance();
-    } catch (Throwable e) {
-      e.printStackTrace();
-    }
-
-    if (!source.getType().getName().equals(unitTarget.getType().getName())) {
-      throw new IncompatibleUnitException();
-    }
     try {
       convertible = (Convertible<Unit>) unitTarget;
       conversionResult = convertible.from(normalized);
-    } catch (Throwable ignored) {
-
+    } catch (Throwable e) {
+      if (!source.equals(unitTarget)) {
+        throw new IncompatibleUnitException();
+      }
     }
 
     return conversionResult;
