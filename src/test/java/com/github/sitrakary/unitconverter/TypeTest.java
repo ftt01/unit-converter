@@ -24,24 +24,29 @@
 
 package com.github.sitrakary.unitconverter;
 
-public abstract class Type {
+import static org.junit.Assert.assertTrue;
 
-  private String name;
+import com.github.sitrakary.unitconverter.unit.Temperature;
+import org.junit.Before;
+import org.junit.Test;
 
-  protected Type() {
+public class TypeTest {
+
+  private Type type;
+  private Type anotherType;
+
+  @Before
+  public void setUp() {
+    type = new Temperature();
+    anotherType = new Temperature();
   }
 
-  public Type(String name) {
-    this.name = name;
+  @Test
+  public void getName() {
   }
 
-  public String getName() {
-    return name;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    Type type = (Type) obj;
-    return this.getName().equals(type.getName()) && this.getClass().equals(type.getClass());
+  @Test
+  public void equals() {
+    assertTrue(type.equals(anotherType));
   }
 }
