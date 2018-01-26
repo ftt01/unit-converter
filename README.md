@@ -19,7 +19,7 @@ public class ConversionTest {
 }
 ```
 
-That's all :)
+That's all :v:
 
 ## API
 * Convert
@@ -29,9 +29,29 @@ That's all :)
 ## Supported conversion
 
 * Temperature
-  * Celsius
-  * Kelvin
-  * Fahrenheit
+  * Celsius :heavy_check_mark:
+  * Kelvin :heavy_check_mark:
+  * Fahrenheit :heavy_check_mark:
 * Length
-  * Metre
-  * Inch
+  * Kilometre
+  * Metre :heavy_check_mark:
+  * Centimetre
+  * Millimetre
+  * Micrometre
+  * Nanometre
+  * Mile
+  * Yard
+  * Foot
+  * Inch :heavy_check_mark:
+  * Nautical inch
+* Mass
+  * Tonne
+  * Kilogram
+  * Gram
+  * Milligram
+  * Microgram
+  * Imperial ton
+  * US ton
+  * Stone
+  * Pound
+  * Ounce
