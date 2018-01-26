@@ -6,9 +6,9 @@ A java library which convert an unit to another one. Unit converter can convert 
 
 Unit converter is very easy to use.
 ```java
-import com.github.sitrka.realconvert.Converter;
-import com.github.sitrka.unit.temperature.Kelvin;
-import com.github.sitrka.unit.temperature.Celsius;
+import com.github.sitrakary.unitconverter.Converter;
+import com.github.sitrakary.unitconverter.unit.temperature.Kelvin;
+import com.github.sitrakary.unitconverter.unit.temperature.Celsius;
 
 public class ConversionTest {
   public static void main(String args[]) {
