@@ -39,7 +39,7 @@ That's all :v:
   * Millimetre
   * Micrometre
   * Nanometre
-  * Mile
+  * Mile :heavy_check_mark:
   * Yard
   * Foot
   * Inch :heavy_check_mark:
