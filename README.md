@@ -1,6 +1,25 @@
 # Unit convert
 
-A java library which convert an unit to another one. Unit converter can convert temperatures, length, mass.
+A java library that converts one unit to another. It can convert temperatures, masses, lengths and much more.
+
+## Getting started
+
+### using gradle
+Add these line to your gradle.build dependencies
+```kotlin
+repositories {
+    ...
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
+dependencies {
+    compile group: 'com.github.sitrakary',  name:'unit-converter', version:'1.0'
+    ...
+}
+
+```
 
 ## Basic usage
 
@@ -79,3 +98,5 @@ That's all :v:
   * Petabyte
   * Pebibyte
   
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/sitrakary/unit-converter/blob/master/LICENSE.md) file for details
