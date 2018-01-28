@@ -24,6 +24,7 @@
 
 package com.github.sitrakary.unitconverter.unit.length;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,15 +40,17 @@ public class YardTest {
   @Before
   public void setUp() {
     meter = mock(Meter.class);
-    when(meter.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(0.9144));
-    yard = new Yard(1);
+    when(meter.getValue()).thenReturn(BigDecimalBuilder.getInstance().build(1.8288));
+    yard = new Yard(2);
   }
 
   @Test
   public void from() {
+    assertEquals(0, yard.from(meter).getValue().compareTo(yard.getValue()));
   }
 
   @Test
   public void normalize() {
+    assertEquals(0, yard.normalize().getValue().compareTo(meter.getValue()));
   }
 }

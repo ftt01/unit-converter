@@ -59,7 +59,7 @@ That's all :v:
   * Micrometre
   * Nanometre
   * Mile :heavy_check_mark:
-  * Yard
+  * Yard :heavy_check_mark:
   * Foot
   * Inch :heavy_check_mark:
   * Nautical inch
