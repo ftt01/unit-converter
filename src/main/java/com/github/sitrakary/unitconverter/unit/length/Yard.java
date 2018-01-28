@@ -24,6 +24,7 @@
 
 package com.github.sitrakary.unitconverter.unit.length;
 
+import com.github.sitrakary.unitconverter.BigDecimalBuilder;
 import com.github.sitrakary.unitconverter.Convertible;
 import com.github.sitrakary.unitconverter.Unit;
 import com.github.sitrakary.unitconverter.unit.Length;
@@ -33,6 +34,7 @@ public class Yard extends Unit implements Convertible<Meter> {
 
   private static final String NAME = "yard";
   private static final String SYMBOL = "yd";
+  private static final BigDecimal YARD_CONST = BigDecimalBuilder.getInstance().build(0.9144);
 
   public Yard() {
     super(new Length(), NAME, SYMBOL, 0d);
@@ -48,11 +50,15 @@ public class Yard extends Unit implements Convertible<Meter> {
 
   @Override
   public Yard from(Meter source) {
-    return null;
+    BigDecimal yardValue = source.getValue()
+        .divideToIntegralValue(YARD_CONST, BigDecimalBuilder.getInstance().getMathContext());
+    return new Yard(yardValue);
   }
 
   @Override
   public Meter normalize() {
-    return null;
+    BigDecimal meterValue = this.getValue()
+        .multiply(YARD_CONST, BigDecimalBuilder.getInstance().getMathContext());
+    return new Meter(meterValue);
   }
 }
