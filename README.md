@@ -43,7 +43,8 @@ That's all :v:
 ## API
 * Convert
   * _*Converter()*_ - Create new converter.
-  * _*convert(Unit source)*_ -
+  * _*convert(Unit source)*_ - Set tht unit to be converted.
+  * _*to()*_ - convert unit and return a new unit.
 
 ## Supported conversion
 
