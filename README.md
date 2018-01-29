@@ -62,7 +62,7 @@ That's all :v:
   * Yard :heavy_check_mark:
   * Foot :heavy_check_mark:
   * Inch :heavy_check_mark:
-  * Nautical inch
+  * Nautical meter :heavy_check_mark:
 * Mass
   * Tonne
   * Kilogram
