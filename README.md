@@ -60,7 +60,7 @@ That's all :v:
   * Nanometre
   * Mile :heavy_check_mark:
   * Yard :heavy_check_mark:
-  * Foot
+  * Foot :heavy_check_mark:
   * Inch :heavy_check_mark:
   * Nautical inch
 * Mass
