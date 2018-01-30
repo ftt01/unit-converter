@@ -37,10 +37,10 @@ apply plugin: 'io.codearte.nexus-staging'
 
 group 'com.github.sitrakary.unit-converter'
 
-version '1.0-SNAPSHOT'
+version '1.0.0'
 group = "com.github.sitrakary"
 archivesBaseName = "unit-converter"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 sourceCompatibility = 1.8
 
