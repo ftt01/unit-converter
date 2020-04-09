@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class UnitRegistry {
 
-  private Map<Class<? extends Type>, HashSet<Class<? extends Unit>>> registry = new HashMap<>();
+  private Map<Class<? extends Type>, HashSet<Class<? extends Unit>>> registry = new HashMap();
 
   public Map getRegistry() {
     return registry;

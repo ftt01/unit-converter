@@ -36,7 +36,7 @@ public class Converter {
 
   public Converter() {
 
-    HashSet<Class<? extends Unit>> temperatures = new HashSet<>();
+    HashSet<Class<? extends Unit>> temperatures = new HashSet();
     temperatures.add(Celsius.class);
     temperatures.add(Kelvin.class);
     unitRegistry.register(Temperature.class, temperatures);
